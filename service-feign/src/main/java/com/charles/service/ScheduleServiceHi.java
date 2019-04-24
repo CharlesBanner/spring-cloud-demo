@@ -16,7 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Service
 @FeignClient(value = "service-hi")
-public interface SchedualServiceHi {
+public interface ScheduleServiceHi {
+
+    /***
+     * Feign测试接口
+     * @param name
+     * @return
+     */
     @RequestMapping(value = "/hi",method = RequestMethod.GET)
     String sayHiFromClientOne(@RequestParam(value = "name") String name);
 }

@@ -1,6 +1,6 @@
 package com.charles.controller;
 
-import com.charles.service.SchedualServiceHi;
+import com.charles.service.ScheduleServiceHi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HiController {
     @Autowired
-    private  SchedualServiceHi schedualServiceHi;
+    private ScheduleServiceHi schedualServiceHi;
 
     @GetMapping("hi")
     public String sayHi(@RequestParam String name){
