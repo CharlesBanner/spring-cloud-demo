@@ -29,6 +29,9 @@ public class ExcelDemoUserDTO extends BaseRowModel {
         this.registerDate = registerDate;
     }
 
+    public ExcelDemoUserDTO() {
+    }
+
     public int getId() {
         return id;
     }

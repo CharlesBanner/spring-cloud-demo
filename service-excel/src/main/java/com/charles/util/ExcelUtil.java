@@ -8,7 +8,6 @@ import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.charles.excel.ExcelListener;
 import com.charles.exception.ExcelException;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -19,65 +18,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * Description:
  * ExcelUtil
  * 基于easyExcel的开源框架，poi版本3.17
  * BeanCopy ExcelException 属于自定义数据，属于可自定义依赖
  * 工具类尽可能还是需要减少对其他java的包的依赖
- * @author: GanZiB
- * Date: 2019-04-25
- * Time: 16:44
+ * @author wenxuan.wang
  */
-@Log4j2
 public class ExcelUtil {
-
-    private static Sheet initSheet;
-
-    static {
-        initSheet = new Sheet(1, 0);
-        initSheet.setSheetName("sheet");
-        //设置自适应宽度
-        initSheet.setAutoWidth(Boolean.TRUE);
-    }
-
     /**
-     * 读取少于1000行数据
-     * @param fileStream 文件绝对路径
-     * @return
+     * 私有化构造方法
      */
-    public static List<Object> readLessThan1000Row(InputStream fileStream){
-        return readLessThan1000RowBySheet(fileStream,null);
-    }
-
-    /**
-     * 读小于1000行数据, 带样式
-     * fileStream 文件绝对路径
-     * initSheet ：
-     *      sheetNo: sheet页码，默认为1
-     *      headLineMun: 从第几行开始读取数据，默认为0, 表示从第一行开始读取
-     *      clazz: 返回数据List<Object> 中Object的类名
-     */
-    public static List<Object> readLessThan1000RowBySheet(InputStream fileStream, Sheet sheet){
-
-        sheet = sheet != null ? sheet : initSheet;
-
-        try {
-            return EasyExcelFactory.read(fileStream, sheet);
-        } catch (Exception e) {
-            log.info("找不到文件或文件路径错误, 文件：{}");
-        }finally {
-            try {
-                if(fileStream != null){
-                    fileStream.close();
-                }
-            } catch (IOException e) {
-                log.info("excel文件读取失败, 失败原因：{}", e);
-            }
-        }
-        return null;
-    }
-
+    private ExcelUtil(){}
 
     /**
      * 读取 Excel(多个 sheet)
@@ -202,14 +153,13 @@ public class ExcelUtil {
         }
     }
 
-
     /**
      * 返回 ExcelReader
      * @param excel         需要解析的 Excel 文件
      * @param excelListener new ExcelListener()
      */
     private static ExcelReader getReader(MultipartFile excel,
-                                         ExcelListener excelListener) throws ExcelException{
+                                         ExcelListener excelListener) throws ExcelException {
         String fileName = excel.getOriginalFilename();
         if (fileName == null ) {
             throw new ExcelException("文件格式错误！");
@@ -221,7 +171,6 @@ public class ExcelUtil {
         try {
             inputStream = excel.getInputStream();
             return new ExcelReader(inputStream, null, excelListener, false);
-
         } catch (IOException e) {
             //do something
         }
@@ -231,7 +180,7 @@ public class ExcelUtil {
     /**
      * 利用BeanCopy转换list
      */
-    public static <T extends BaseRowModel> List<T> getExtendsBeanList(List<?> list, Class<T> typeClazz){
+    public static <T extends BaseRowModel> List<T> getExtendsBeanList(List<?> list,Class<T> typeClazz){
         return BeanCopy.convert(list,typeClazz);
     }
 }

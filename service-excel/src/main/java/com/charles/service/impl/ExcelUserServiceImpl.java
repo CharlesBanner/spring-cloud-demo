@@ -21,11 +21,11 @@ public class ExcelUserServiceImpl implements ExcelUserService {
     @Override
     public List<ExcelUser> getResult() {
         List<ExcelUser> excelUsers = new ArrayList<>();
-        excelUsers.add(new ExcelUser(1,"qwe1",new Date()));
-        excelUsers.add(new ExcelUser(2,"qwe2",new Date()));
-        excelUsers.add(new ExcelUser(3,"qwe3",new Date()));
-        excelUsers.add(new ExcelUser(4,"qwe4",new Date()));
-        excelUsers.add(new ExcelUser(5,"qwe5",new Date()));
+        excelUsers.add(new ExcelUser(1,"qwe1",new Date().toString()));
+        excelUsers.add(new ExcelUser(2,"qwe2",new Date().toString()));
+        excelUsers.add(new ExcelUser(3,"qwe3",new Date().toString()));
+        excelUsers.add(new ExcelUser(4,"qwe4",new Date().toString()));
+        excelUsers.add(new ExcelUser(5,"qwe5",new Date().toString()));
         return excelUsers;
     }
 }

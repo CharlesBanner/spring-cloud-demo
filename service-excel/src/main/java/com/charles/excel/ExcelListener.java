@@ -1,5 +1,6 @@
 package com.charles.excel;
 
+
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
@@ -9,14 +10,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author: GanZiB
- * Date: 2019-04-25
- * Time: 14:40
- */
 public class ExcelListener extends AnalysisEventListener {
 
     private List<Object> dataList = new ArrayList<>();
@@ -66,5 +59,4 @@ public class ExcelListener extends AnalysisEventListener {
     public List<Object> getDataList() {
         return dataList;
     }
-
 }

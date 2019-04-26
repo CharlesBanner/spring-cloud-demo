@@ -21,13 +21,9 @@ public class DemoUserServiceImpl implements DemoUserService {
     @Override
     public List<ExcelDemoUserDTO> getDemoUserData() {
         List<ExcelDemoUserDTO> excelDemoUserDTOS = new ArrayList<>();
-        excelDemoUserDTOS.add(new ExcelDemoUserDTO(1,"DemoUser1",new Date()));
-        excelDemoUserDTOS.add(new ExcelDemoUserDTO(2,"DemoUser2",new Date()));
-        excelDemoUserDTOS.add(new ExcelDemoUserDTO(3,"DemoUser3",new Date()));
-        excelDemoUserDTOS.add(new ExcelDemoUserDTO(4,"DemoUser4",new Date()));
-        excelDemoUserDTOS.add(new ExcelDemoUserDTO(5,"DemoUser5",new Date()));
-        excelDemoUserDTOS.add(new ExcelDemoUserDTO(6,"DemoUser6",new Date()));
-        excelDemoUserDTOS.add(new ExcelDemoUserDTO(7,"DemoUser7",new Date()));
+        for (int i = 0; i < 1000; i++) {
+            excelDemoUserDTOS.add(new ExcelDemoUserDTO(i,"DemoUser"+i,new Date()));
+        }
         return excelDemoUserDTOS;
     }
 }
