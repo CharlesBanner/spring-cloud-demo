@@ -15,6 +15,7 @@
         <module>service-eureka</module>
         <module>service-feign</module>
         <module>service-excel</module>
+        <module>service-fastdfs</module>
     </modules>
 
     <parent>
