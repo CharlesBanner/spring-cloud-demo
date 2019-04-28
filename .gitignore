@@ -18,3 +18,21 @@ derby.log
 *.iml
 nb-configuration.xml
 .DS_Store
+
+
+### IntelliJ IDEA ###
+*.iws
+*.ipr
+
+
+### Project ###
+*/target/
+*/**/target/
+*/**/**/target/
+*/**/**/**/target/
+*.class
+*.jar
+*.log
+*.log.*
+*/**/*.log
+*/**/*.log.*

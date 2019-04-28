@@ -16,6 +16,7 @@
         <module>service-feign</module>
         <module>service-excel</module>
         <module>service-fastdfs</module>
+        <module>service-jpa-demo</module>
     </modules>
 
     <parent>
