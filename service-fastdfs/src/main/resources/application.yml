@@ -3,11 +3,30 @@ server:
 
 spring:
   application:
-    name: service-hi
+    name: service-fastdfs
+
+  servlet:
+    multipart:
+      max-file-size: 240MB
+      max-request-size: 240MB
+
+#设置fast-dfs
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 1601
+  thumb-image:
+    width: 150
+    height: 150
+  tracker-list[0]: 10.28.200.226:22122
+  pool:
+    max-wait-millis: 102
+    jmx-name-base: 1
+    jmx-name-prefix: 1
+  webServerUrl: 10.28.200.226
+pool:
+  max-total: 153
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-
-
