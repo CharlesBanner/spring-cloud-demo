@@ -9,6 +9,29 @@ spring:
     multipart:
       max-file-size: 240MB
       max-request-size: 240MB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/work_test?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maxLifetime: 600000 # 10分钟
+      maximumPoolSize: 10 #连接池中允许的最大连接数
+      minimum-idle: 5
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+      cluster-name: ganzib
+      #      cluster-nodes: 10.28.100.27:59303,10.28.100.27:59304
+      cluster-nodes: localhost:9300,localhost:9301
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
 
 #设置fast-dfs
 fdfs:
