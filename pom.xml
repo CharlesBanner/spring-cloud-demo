@@ -17,6 +17,8 @@
         <module>service-excel</module>
         <module>service-fastdfs</module>
         <module>service-jpa-demo</module>
+        <module>service-logstash</module>
+        <module>service-user</module>
     </modules>
 
     <parent>
