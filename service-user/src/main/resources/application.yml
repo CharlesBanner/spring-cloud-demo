@@ -3,11 +3,10 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 server:
-  port: 8764
-
+  port: 8771
 spring:
   application:
-    name: service-ribbon
+    name: service-user
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/work_test?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC

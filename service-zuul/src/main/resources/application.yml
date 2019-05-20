@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: gateway_server
+  cloud:
+    gateway:
+      default-filters:
+      routes:
+      - id:
+        # lb代表从注册中心获取服务
+        uri: lb://scjrj-sso
+        predicates:
+        # 转发该路径
+        - Path=/scjrj-sso/**
+        # 带前缀
+        filters:
+        - StripPrefix=1
+
+
+#服务注册中心端口号
+server:
+  port: 6400
+
+#服务注册中心实例的主机名、端口
+#是否向服务注册中心注册自己
+#是否检索服务
+#服务注册中心的配置内容，指定服务注册中心的位置
+eureka:
+  port: 8761
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.port}/eureka/
+

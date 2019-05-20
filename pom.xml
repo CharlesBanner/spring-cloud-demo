@@ -19,6 +19,7 @@
         <module>service-jpa-demo</module>
         <module>service-logstash</module>
         <module>service-user</module>
+        <module>service-zuul</module>
     </modules>
 
     <parent>

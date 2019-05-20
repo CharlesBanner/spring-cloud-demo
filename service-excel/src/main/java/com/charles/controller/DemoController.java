@@ -9,14 +9,19 @@ import com.charles.exception.ExcelException;
 import com.charles.service.DemoUserService;
 import com.charles.util.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,6 +50,57 @@ public class DemoController {
         ExcelUtil.writeExcel(response,result,fileName,"test", ExcelTypeEnum.XLSX,ExcelDemoUserDTO.class);
         buildDownloadResponse(request,response,fileName);
 
+    }
+
+    /**
+     * 文件（二进制数据）下载
+     * @param fileType 文件类型
+     * @return
+     */
+    @RequestMapping("/downloadFile")
+    public ResponseEntity<byte[]> downloadFile(String fileType, HttpServletRequest request ){
+
+        System.out.println(request.getParameter("fileType"));
+        System.out.println("参数fileType: "+fileType);
+
+        HttpHeaders headers = new HttpHeaders();
+        ResponseEntity<byte[]> entity = null;
+        InputStream in=null;
+        try {
+            in=new FileInputStream(new File("d:/myImg/001.png"));
+
+            byte[] bytes = new byte[in.available()];
+
+            String imageName="001.png";
+
+            //处理IE下载文件的中文名称乱码的问题
+            String header = request.getHeader("User-Agent").toUpperCase();
+            if (header.contains("MSIE") || header.contains("TRIDENT") || header.contains("EDGE")) {
+                imageName = URLEncoder.encode(imageName, "utf-8");
+                imageName = imageName.replace("+", "%20");    //IE下载文件名空格变+号问题
+            } else {
+                imageName = new String(imageName.getBytes(), "iso-8859-1");
+            }
+
+            in.read(bytes);
+
+            headers.add("Content-Disposition", "attachment;filename="+imageName);
+
+            entity = new ResponseEntity<byte[]>(bytes, headers, HttpStatus.OK);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(in!=null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return entity;
     }
 
     @GetMapping("/export1")

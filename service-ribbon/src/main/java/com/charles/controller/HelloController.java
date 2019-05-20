@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -23,6 +25,10 @@ public class HelloController {
     @GetMapping(value = "testHi")
     public String hi(@RequestParam String name){
         return helloService.hiService(name);
+    }
+    @GetMapping(value = "excel")
+    public void excelService(HttpServletResponse response){
+        helloService.excelService(response);
     }
 
 }
