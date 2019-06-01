@@ -1,19 +1,19 @@
 spring:
   application:
     name: gateway_server
-  cloud:
-    gateway:
-      default-filters:
-      routes:
-      - id:
-        # lb代表从注册中心获取服务
-        uri: lb://scjrj-sso
-        predicates:
-        # 转发该路径
-        - Path=/scjrj-sso/**
-        # 带前缀
-        filters:
-        - StripPrefix=1
+#  cloud:
+#    gateway:
+#      default-filters:
+#      routes:
+#      - id:
+#        # lb代表从注册中心获取服务
+#        uri: lb://scjrj-sso
+#        predicates:
+#        # 转发该路径
+#        - Path=/scjrj-sso/**
+#        # 带前缀
+#        filters:
+#        - StripPrefix=1
 
 
 #服务注册中心端口号

@@ -43,7 +43,7 @@ public class DemoController {
     @Autowired
     private DemoUserService demoUserService;
 
-    @GetMapping("/export-excel-demo")
+    @PostMapping("/export-excel-demo")
     public void exportExcelUserDemo(HttpServletRequest request,HttpServletResponse response)throws Exception {
         List<ExcelDemoUserDTO> result =  demoUserService.getDemoUserData();
         String fileName = "示例文件111";

@@ -20,6 +20,7 @@
         <module>service-logstash</module>
         <module>service-user</module>
         <module>service-zuul</module>
+        <module>service-common-excel</module>
     </modules>
 
     <parent>

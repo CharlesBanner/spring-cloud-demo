@@ -22,6 +22,6 @@ public interface ExcelService {
      * Feign测试接口
      * @return
      */
-    @RequestMapping(value = "/export-excel-demo",method = RequestMethod.GET)
+    @RequestMapping(value = "/export-excel-demo",method = RequestMethod.POST)
     byte[] excelFeign();
 }
